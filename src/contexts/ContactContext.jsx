@@ -1,25 +1,20 @@
 import { createContext, useState } from "react";
 
 const ContactContext = createContext({
-    name: null,
-    phone: null
+    contacts: [],
+    addContact: () => {}
 });
 
 export function ContactContextProvider({ children }) {
-    const [name, setName] = useState("a");
-    const [phone, setPhone] = useState("1");
+    const [contacts, setContacts] = useState([]);
 
-    function changeName(name) {
-        setName(name)
-    }
-
-    function changePhone(phone) {
-        setPhone(phone)
+    function addContact(contact) {
+        setContacts([...contacts, contact])
     }
 
     const context = {
-        name: name,
-        phone: phone,
+        contacts: contacts,
+        addContact: addContact
     }
 
     return (

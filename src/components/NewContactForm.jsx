@@ -1,5 +1,8 @@
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+
+import ContactContext from "../contexts/ContactContext";
 
 import InputError from "./InputError";
 
@@ -8,9 +11,12 @@ export default function NewContactForm() {
   const form = useForm();
   const { register, handleSubmit, formState: { errors } } = form;
 
+  const { addContact } = useContext(ContactContext);
+
   const onSubmit = (data) => {
     console.log(data);
-    navigate("/");
+    addContact(data);
+    navigate("/contacts");
   }
 
   return (
